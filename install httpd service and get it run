@@ -1,0 +1,18 @@
+// Install Httpd service
+
+---
+- name: Install and Start Apache HTTP Server
+  hosts: your_target_servers //actual host servers.
+  become: true  # Run tasks with elevated privileges (sudo)
+
+  tasks:
+    - name: Install Apache HTTP Server
+      package:
+        name: httpd  # Package name for Apache HTTP Server
+        state: present  # Ensure the package is installed
+
+    - name: Start Apache service
+      service:
+        name: httpd  # Service name for Apache HTTP Server
+        state: started  # Ensure the service is started
+        enabled: true  # Ensure the service starts on boot
